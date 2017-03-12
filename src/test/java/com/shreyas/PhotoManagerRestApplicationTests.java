@@ -1,7 +1,6 @@
 package com.shreyas;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
@@ -19,6 +18,7 @@ public class PhotoManagerRestApplicationTests {
 
 	@Autowired
 	private MockMvc mockMvc;
+
 
 	@Test
 	public void getAlbums() throws Exception {
