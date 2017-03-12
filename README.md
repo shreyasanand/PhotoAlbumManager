@@ -17,11 +17,22 @@ Developed using Java and Spring boot framework.
 		- Delete an existing photo - DELETE : /myapi/photos/{id}
 		- Read/Return a list of photos in a given album - GET : /myapi/photos/byalbum/{id}
 		
-## How to install?
+	3) Initialize data
+		- Initialze data to the use the above functionality - GET : /myapi/init
+		- Data sources : https://jsonplaceholder.typicode.com/albums
+						 https://jsonplaceholder.typicode.com/photos
+	
+## How to install/use?
 
-	- You can build the application package using 
+	- What you need
+		- jdk 1.7 and up
+		- maven 3.3.9
+	- Download the repository
+	- Build the application package using 
 		mvnw clean package
 	- Then run the jar PhotoManagerREST-0.0.1-SNAPSHOT.jar
+	- Got to http://localhost:8080/myapi/init to initialize the data and you are good to test the rest of the functionality
 	
 ##Todo
 	- Unit tests
+	- Authentication
