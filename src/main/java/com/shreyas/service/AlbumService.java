@@ -1,7 +1,5 @@
 package com.shreyas.service;
 
-import org.springframework.data.domain.Pageable;
-
 import com.shreyas.entities.Album;
 import com.shreyas.entities.TO.AlbumTO;
 
@@ -17,6 +15,6 @@ public interface AlbumService {
 
 	void deleteAlbum(Long id);
 	
-	void initData();
+	boolean initData();
 
 }

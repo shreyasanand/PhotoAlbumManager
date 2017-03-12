@@ -1,5 +1,10 @@
 package com.shreyas.entities.TO;
 
+/**
+ * Data transfer object for Photo entity
+ * 
+ * @author shreyas
+ */
 public class PhotoTO {
 	
 	private Long id;

@@ -20,5 +20,5 @@ public interface PhotoService {
 
 	void deletePhoto(Long id);
 
-	void initData();
+	boolean initData();
 }

@@ -1,8 +1,6 @@
 package com.shreyas.controllers;
 
 import javax.annotation.Resource;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +16,8 @@ import com.shreyas.service.PhotoService;
 public class PhotoController {
 	
 	public static final String PHOTOS_BASE_URI = "/myapi/photos";
+	
+	public static final String PHOTOS_BY_ALBUM_EXT_URI = "/byAlbum/{id}";
 	
 	@Resource(name="photoService")
 	private PhotoService photoService;
@@ -37,7 +37,6 @@ public class PhotoController {
 	 * Method to get all photos
 	 * GET : /myapi/photos
 	 * 
-	 * @param pageable
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getPhotos() {
@@ -79,7 +78,13 @@ public class PhotoController {
 		return ResponseEntity.ok(null);
 	}
 	
-	@RequestMapping(value = "/byAlbum/{id}", method = RequestMethod.GET)
+	/**
+	 * Method to get a list of all photos in a given album
+	 * GET : myapi/photos/byAlbum/{id}
+	 * 
+	 * @param id
+	 */
+	@RequestMapping(value = PhotoController.PHOTOS_BY_ALBUM_EXT_URI, method = RequestMethod.GET)
 	public ResponseEntity<?> getPhotosByAlbumId(@PathVariable("id") Long id) {
 		return ResponseEntity.ok(this.photoService.getPhotosByAlbumId(id));
 	}

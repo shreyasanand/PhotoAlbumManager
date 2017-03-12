@@ -1,5 +1,10 @@
 package com.shreyas.entities.TO;
 
+/**
+ * Data transfer object for Album entity
+ * 
+ * @author shreyas
+ */
 public class AlbumTO {
 	
 	private Long id;

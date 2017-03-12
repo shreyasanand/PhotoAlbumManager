@@ -1,25 +1,21 @@
 package com.shreyas.controllers;
-import java.io.IOException;
 
 import javax.annotation.Resource;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.shreyas.exceptions.DataInitializationException;
 import com.shreyas.service.AlbumService;
 import com.shreyas.service.PhotoService;
 
 @RestController
-@RequestMapping("/myapi/init")
+@RequestMapping(InitController.INIT_BASE_URI)
 public class InitController {
 
-	private static final Logger logger = LoggerFactory.getLogger(InitController.class);
+	public static final String INIT_SUCCESS_MSG = "Initialized data successfully";
+	public static final String INIT_BASE_URI = "/myapi/init";
 	
 	@Resource(name="albumService")
 	private AlbumService albumService;
@@ -27,11 +23,19 @@ public class InitController {
 	@Resource(name="photoService")
 	private PhotoService photoService;
 	
+	/**
+	 * Method to initialize the data from the given webservices
+	 * albumData.url and photoData.url defined in application.properties
+	 * GET : /myapi/init
+	 * 
+	 * @throws DataInitializationException
+	 */
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<?> init(){
-		this.albumService.initData();
-		this.photoService.initData();
-		return ResponseEntity.ok("Initialized data!");
+	public ResponseEntity<?> init() throws DataInitializationException {
+		if(!this.albumService.initData() || !this.photoService.initData()){
+			throw new DataInitializationException();
+		}
+		return ResponseEntity.ok(InitController.INIT_SUCCESS_MSG);
 	}
 	
 }
